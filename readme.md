@@ -58,3 +58,6 @@ ops      : object =  {
  * Example features in this repo: https://github.com/lowdewijk/JsConicSections/example/index.html
  * Example featured on intmath: http://www.intmath.com/plane-analytic-geometry/conic-sections-summary-interactive.php
 
+# License 
+
+MIT licensed. Enjoy.
