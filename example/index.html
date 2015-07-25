@@ -1,0 +1,170 @@
+<html>
+<head>
+	<title>Conic sections</title>
+
+	<link type="text/css" href="css/ui-lightness/jquery-ui-1.8.17.custom.css" rel="stylesheet" />
+	<script type="text/javascript" src="lib/jquery-1.7.1.min.js"></script>
+	<script type="text/javascript" src="lib/jquery-ui-1.8.17.custom.min.js"></script>
+	<script type="text/javascript" src="lib/raphael-2.0.1-min.js"></script>
+	<script type="text/javascript" src="../conics3d.js"></script>
+
+	<script type="text/javascript">
+		$(document).ready(function() {
+			// setup and full config of the 3d conic
+			var conics = new ConicsUI(
+				$("#ui"),
+				$("#c2"),
+				{ maxConeRadius: 100,
+					updateRealtime: true,
+					yaw: Math.PI / 8,
+					pitch: Math.PI / 8,
+					planeX: 10,
+					planeY: 10,
+					onPlaneUpdate: function(conics) {
+						var intsec = conics.getIntersection();
+						var typeCaption = $("#conicType");
+						typeCaption.html(ConicType.toString(intsec.type));
+					},
+					drawOptions: {
+						curveLineSegments: 64,
+						plane: {
+							"stroke": "#FF00FF",
+							"stroke-width": 2,
+							"fill": "#f3b205",
+							"fill-opacity": 0.2 },
+						intersection: {
+							stroke: "#FF00FF",
+							"stroke-width": 2 },
+						coneEndings: {
+							"stroke": "#555555",
+							"fill-opacity": "0.6",
+							"fill": "#EFEFEF",
+							"stroke-width": 1 },
+						coneLines: {
+							"stroke": "#555555",
+							"stroke-width": 1 }
+					}
+				});
+
+			with(conics) {
+				createXSlider($("#xSlider"), $("#xValue"), { vertical: true });
+				createYSlider($("#ySlider"), $("#yValue"), {
+					vertical: true, inverse: true
+					});
+				//createZSlider($("#zSlider"), $("#zValue"), { vertical: true });
+				createRotSlider($("#rotSlider"), $("#rotValue"), { vertical: true });
+				createRealtimeCheckbox($("#updateRealtime"), false);
+			}
+		});
+	</script>
+
+	<style type="text/css">
+		.conic {
+			width: 430px;
+			height: 330px;
+			cursor: move;
+		}
+
+		body {
+			background-color: #EEEEEE;
+		}
+
+		body, table, td, h1 {
+			font-family: sans-serif;
+		}
+
+		h2 {
+			text-align: center;
+		}
+
+		table#conic {
+			border: 1px solid black;
+			padding: 10px 10px 10px 10px;
+			background-color: white;
+		}
+
+		table#conic td {
+			border: 0;
+		}
+
+		table#controls {
+			border: 1px solid #AAAAAA;
+			padding: 10px 0px 10px 10px;
+		}
+
+		table#controls td {
+			width: 50px;
+			margin: 0;
+			padding: 0;
+		}
+
+		.ex {
+			text-align: center;
+			font-style: italic;
+		}
+
+	</style>
+</head>
+<body>
+
+<div id="conic">
+<table id="conic">
+<tr>
+	<td>
+		<h2><span id="conicType"></span></h2>
+	</td>
+	<td></td>
+</tr>
+<tr>
+	<td>
+		<div id="c2" class="conic"></div>
+		<p class="ex">(click and drag to rotate camera)</p>
+	</td>
+	<td>
+		<table id="controls">
+			<tr>
+				<td colspan=3>
+					<h3>Controls</h3>
+				</td>
+			</tr>
+			<tr>
+				<td id="xSlider">
+				</td>
+				<td id="ySlider">
+				</td>
+				<td id="rotSlider">
+				</td>
+			</tr>
+			<tr>
+				<td id="xValue">
+				</td>
+				<td id="yValue">
+				</td>
+				<td id="rotValue">
+				</td>
+			</tr>
+			<tr>
+				<td>
+					X
+				</td>
+				<td>
+					Y
+				</td>
+				<td>
+					&theta;
+				</td>
+			</tr>
+			<tr>
+				<td colspan=3>
+					Disable real-time <span id="updateRealtime"></span>
+				</td>
+			</tr>
+		</table>
+	</td>
+ </tr>
+</table>
+</div>
+
+
+</body>
+</html>
