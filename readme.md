@@ -1,4 +1,4 @@
-# Conic Secions SVG renderer
+# Conic Sections SVG renderer
 
 Demonstrates the principle of conic sections in 3D for educational purposes. Works fully in the browser using SVG rendering, which makes it backwards compatible with some pretty old browser.
 
